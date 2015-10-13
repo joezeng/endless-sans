@@ -1,0 +1,34 @@
+<html>
+
+<head>
+	<title>Endless Sans</title>
+
+	<link rel="stylesheet" href="css/undertale.css" />
+
+	<script type="text/javascript" src="lib/funcs.js"></script>
+	<script type="text/javascript" src="lib/three.min.js"></script>
+	<script type="text/javascript" src="lib/threex.keyboardstate.js"></script>
+
+	<script type="text/javascript" src="js/rendering.js"></script>
+	<script type="text/javascript" src="js/heart.js"></script>
+	<script type="text/javascript" src="js/battle.js"></script>
+	<script type="text/javascript" src="js/input.js"></script>
+</head>
+
+<body>
+	<canvas width=320 height=240><noscript>Looks like your browser doesn't support JavaScript! Please unblock your script blocker on <b>joezeng.github.io</b> to play. (Or download a browser that supports JavaScript. Seriously, it's 2015, who doesn't have a computer who can run that.)</noscript></canvas>
+
+	<script type="text/javascript">
+		var maruju = null;
+		var textbox = null;
+
+		function start() {
+			maruju = new Maruju(document.body, 320, 120);
+			maruju.startDraw();
+		}
+
+		window.onload = start;
+	</script>
+</body>
+
+</html>
