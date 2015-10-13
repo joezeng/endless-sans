@@ -85,7 +85,7 @@ RenderContext.prototype = {
 // Entry point.
 var Maruju = function (element, width, height) {
 	this.renderContext = new RenderContext(width, height);
-	this.rootScene = new SceneContext();
+	this.rootScene = new BattleScene();
 	this.renderContext.addRendererToElement(element);
 	this.clock = new THREE.Clock();
 };

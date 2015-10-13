@@ -24,23 +24,17 @@ var InputManager = {
         if ( keyboard.eventMatches(event, 'left') ||
 			 keyboard.eventMatches(event, 'a')) {
             event.preventDefault();
-			if (!textbox.isActive)
-				pc.onKeyDown('left');
+			heart.move("left");
         }
         if ( keyboard.eventMatches(event, 'right') ||
 			 keyboard.eventMatches(event, 'd')) {
             event.preventDefault();
-			if (!textbox.isActive)
-				pc.onKeyDown('right');
+			heart.move("right");
         }
         if ( keyboard.eventMatches(event, 'up') ||
 			 keyboard.eventMatches(event, 'w')) {
             event.preventDefault();
 
-			if (!textbox.isActive)
-				pc.onKeyDown('up');
-			else
-				textbox.choicePrev();
         }
         if ( keyboard.eventMatches(event, 'down') ||
 			 keyboard.eventMatches(event, 's')) {
@@ -72,12 +66,12 @@ var InputManager = {
 		if ( keyboard.eventMatches(event, 'left') ||
 			 keyboard.eventMatches(event, 'a')) {
             event.preventDefault();
-			pc.onKeyUp('left');
+			heart.move("clear_h");
         }
         if ( keyboard.eventMatches(event, 'right') ||
 			 keyboard.eventMatches(event, 'd')) {
             event.preventDefault();
-			pc.onKeyUp('right');
+			heart.move("clear_h");
         }
         if ( keyboard.eventMatches(event, 'up') ||
 			 keyboard.eventMatches(event, 'w')) {

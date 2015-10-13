@@ -71,11 +71,30 @@ function Heart() {
 		}
 
 		if (this.sprite) {
-			this.sprite.setPosition({x: this.pos_x, y: this.pos_y, z: 2});
+			this.sprite.position.set({x: this.pos_x, y: this.pos_y, z: 2});
 		}
 
 	};
 
+}
+
+Heart.prototype.move = function(dir) {
+	switch (dir) {
+		case "left":
+			this.h_move_state = "left";
+			break;
+		case "right":
+			this.h_move_state = "right";
+			break;
+		case "clear_h":
+			this.h_move_state = "none";
+			if (keyboard.pressed("left")) {
+				this.h_move_state = "left";
+			} else if (keyboard.pressed("right")) {
+				this.h_move_state = "right";
+			}
+			break;
+	}
 }
 
 var heart = new Heart();
