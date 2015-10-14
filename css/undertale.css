@@ -1,7 +1,7 @@
 html, body {
 	background-color: black;
 	color: white;
-	font: Comic Sans, Arial, sans-serif;
+	font-family: Comic Sans, Arial, sans-serif;
 }
 
 #heartbox{
