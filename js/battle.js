@@ -118,4 +118,5 @@ BattleScene.prototype.resetGame = function(diff_level) {
 			this.play_speed = 1.5;
 			break;
 	}
+	document.activeElement.blur();
 }
