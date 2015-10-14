@@ -14,10 +14,13 @@ function BattleScene() {
 
 	this.getScene().add(this.heart_sprite);
 
+	this.bone_group = new BoneGroup(this, default_bone_set);
+
 };
 
 inherit(BattleScene, SceneContext);
 
 BattleScene.prototype.update = function(delta) {
 	this.heart.update(delta);
+	this.bone_group.update(delta);
 };

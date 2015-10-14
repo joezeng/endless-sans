@@ -11,7 +11,7 @@ function Heart() {
 	this.board_x = 320;
 	this.board_y = 120;
 
-	this.pos_x = 150;
+	this.pos_x = 160;
 	this.pos_y = 112;
 
 	this.vel_y = 0; // vel_x is never affected.
