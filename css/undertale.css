@@ -4,6 +4,12 @@ html, body {
 	font-family: Comic Sans, Arial, sans-serif;
 }
 
+#gamebox{
+	width: 640px;
+	height: 480px;
+	margin: auto;
+}
+
 #heartbox{
 	width: 320px;
 	margin: auto;

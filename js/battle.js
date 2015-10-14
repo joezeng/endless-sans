@@ -14,7 +14,8 @@ function BattleScene() {
 
 	this.getScene().add(this.heart_sprite);
 
-	this.bone_group = new BoneGroup(this, default_bone_set);
+	this.bone_groups = [];
+	this.sendNewBones(default_bone_set);
 
 	this.elapsed_time = 0;
 
@@ -24,11 +25,18 @@ inherit(BattleScene, SceneContext);
 
 BattleScene.prototype.update = function(delta) {
 	this.heart.update(delta);
-	this.bone_group.update(delta);
+	for (var a = 0; a < this.bone_groups.length; ++a) {
+		if (this.bone_groups[a].completed == true) {
+			this.bone_groups.splice(a, 1);
+			a -= 1;
+			continue;
+		}
+		this.bone_groups[a].update(delta);
+	}
 	this.elapsed_time += delta;
 	document.getElementById("time").innerHTML = this.elapsed_time.toFixed(2);
 };
 
-BattleScene.prototype.sendNewBones = function(bone_set) {
-	this.bone_group = new BoneGroup(this, bone_set);
+BattleScene.prototype.sendNewBones = function(bone_set, elapsed_time) {
+	this.bone_groups.push(new BoneGroup(this, bone_set, elapsed_time));
 }

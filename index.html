@@ -11,6 +11,7 @@
 
 	<script type="text/javascript" src="js/rendering.js"></script>
 	<script type="text/javascript" src="js/bone.js"></script>
+	<script type="text/javascript" src="js/bonesets.js"></script>
 	<script type="text/javascript" src="js/heart.js"></script>
 	<script type="text/javascript" src="js/battle.js"></script>
 	<script type="text/javascript" src="js/input.js"></script>
@@ -19,8 +20,10 @@
 <body>
 	<noscript>Looks like your browser doesn't support JavaScript! Please unblock your script blocker on <b>joezeng.github.io</b> to play. (Or download a browser that supports JavaScript. Seriously, it's 2015, who doesn't have a computer who can run that.)</noscript>
 
-	<div id="heartbox"></div>
-	<div>Time: <span id="time">00:00.00</span></div>
+	<div id="gamebox">
+		<div>Time: <span id="time">00:00.00</span></div>
+		<div id="heartbox"></div>
+	</div>
 
 	<script type="text/javascript">
 		var maruju = null;
