@@ -2,15 +2,6 @@ var keyboard = null;
 
 keyboard = new THREEx.KeyboardState();
 
-/*
-    should we use object literals for singletons?
-    or should this not be a singleton at all?  -joe
-
-    i don't see the issue about making it a singleton, or to use object literals
-    but it's likely the outcome of what to do with a press should be handled in
-    the maruju object more than it should here. -az
-*/
-
 var InputManager = {
 
     handlePressInput: function(event) {
@@ -55,8 +46,7 @@ var InputManager = {
 		if ( keyboard.eventMatches(event, 'z') ||
 	 		 keyboard.eventMatches(event, 'x') ||
 	 	     keyboard.eventMatches(event, 'space') ) {
-			// event.preventDefault();
-			textbox.deaccelerateText();
+			event.preventDefault();
 		}
 		if ( keyboard.eventMatches(event, 'left') ||
 			 keyboard.eventMatches(event, 'a')) {
@@ -87,3 +77,7 @@ var InputManager = {
 };
 
 InputManager.injectInto(document);
+
+function reset_game(difficulty) {
+	maruju.rootScene.resetGame(difficulty);
+}

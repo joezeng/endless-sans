@@ -1,11 +1,11 @@
 html, body {
 	background-color: black;
 	color: white;
-	font-family: Comic Sans, Arial, sans-serif;
+	font-family: Comic Sans MS, Arial, sans-serif;
 }
 
 #gamebox{
-	width: 640px;
+	width: 400px;
 	height: 480px;
 	margin: auto;
 }

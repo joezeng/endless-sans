@@ -14,10 +14,14 @@ function BattleScene() {
 
 	this.getScene().add(this.heart_sprite);
 
+	this.difficulty = "easy";
 	this.bone_groups = [];
-	this.sendNewBones(default_bone_set);
+
+	this.play_state = "none";
+	this.play_speed = 1;
 
 	this.elapsed_time = 0;
+	this.final_time = 0;
 
 };
 
@@ -25,33 +29,91 @@ inherit(BattleScene, SceneContext);
 
 BattleScene.prototype.update = function(delta) {
 
-	// delta *= 0.5;
+	if (this.play_state == "playing") {
 
-	var collided = false;
+		var collided = false;
 
-	this.heart.update(delta);
-	for (var a = 0; a < this.bone_groups.length; ++a) {
-		if (this.bone_groups[a].completed == true) {
-			this.bone_groups.splice(a, 1);
-			a -= 1;
-			continue;
+		this.heart.update(delta * this.play_speed);
+		for (var a = 0; a < this.bone_groups.length; ++a) {
+			if (this.bone_groups[a].completed == true) {
+				this.bone_groups.splice(a, 1);
+				a -= 1;
+				continue;
+			}
+			this.bone_groups[a].update(delta * this.play_speed);
+			if (this.bone_groups[a].collidesWithHeart()) {
+				collided = true;
+			}
 		}
-		this.bone_groups[a].update(delta);
-		if (this.bone_groups[a].collidesWithHeart()) {
-			collided = true;
-		}
-	}
 
-	if (collided == true) {
-		this.elapsed_time = 0;
-		console.log("Game over!");
-	} else {
+		if (collided == true) {
+			if (this.difficulty == "easy") {
+				heart.hp = Math.max(0, heart.hp - delta);
+				document.getElementById("hp").innerHTML = heart.hp.toFixed(2);
+			} else {
+				heart.hp = 0;
+				document.getElementById("hp").innerHTML = "0";
+			}
+		}
+
+		if (heart.hp <= 0) {
+			this.final_time = this.elapsed_time;
+			this.elapsed_time = 0;
+			this.play_state = "gameover";
+			console.log("Game over!");
+			document.getElementById("time").innerHTML = this.final_time.toFixed(2);
+		} else {
+			this.elapsed_time += delta;
+			document.getElementById("time").innerHTML = this.elapsed_time.toFixed(2);
+		}
+
+
+	} else if (this.play_state == "gameover") {
+
 		this.elapsed_time += delta;
+
+		this.heart.updateGameover(this.elapsed_time);
+
+		if (this.elapsed_time >= 1.0) {
+			this.elapsed_time = 0;
+			this.play_state = "not-playing";
+		}
+
 	}
 
-	document.getElementById("time").innerHTML = this.elapsed_time.toFixed(2);
 };
 
 BattleScene.prototype.sendNewBones = function(bone_set, elapsed_time) {
 	this.bone_groups.push(new BoneGroup(this, bone_set, elapsed_time));
+};
+
+BattleScene.prototype.clearAllBones = function() {
+	for (var a = 0; a < this.bone_groups.length; ++a) {
+		this.bone_groups[a].clearBones();
+	}
+};
+
+BattleScene.prototype.resetGame = function(diff_level) {
+	this.clearAllBones();
+	this.difficulty = diff_level;
+	this.heart.hp = 1;
+	this.heart.pos_x = 160;
+	this.heart.pos_y = 112;
+	switch (diff_level) {
+		case "easy":
+			heart.tolerance = 0;
+			this.play_speed = 1;
+			break;
+		case "medium":
+			heart.tolerance = 2;
+			this.play_speed = 1;
+			break;
+		case "hard":
+			heart.tolerance = 2;
+			this.play_speed = 1.5;
+			break;
+	}
+	this.play_state = "playing";
+	this.bone_groups = [];
+	this.sendNewBones(default_bone_set);
 }

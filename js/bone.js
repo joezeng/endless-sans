@@ -24,10 +24,10 @@ Bone.prototype.update = function(delta) {
 }
 
 Bone.prototype.collidesWithHeart = function() {
-	if (heart.pos_x > this.pos_x - this.width / 2 &&
-	    heart.pos_x < this.pos_x + this.width / 2 &&
-		heart.pos_y > this.pos_y - this.height / 2 &&
-		heart.pos_y < this.pos_y + this.height / 2) {
+	if (heart.pos_x + heart.tolerance > this.pos_x - this.width / 2 &&
+	    heart.pos_x - heart.tolerance < this.pos_x + this.width / 2 &&
+		heart.pos_y + heart.tolerance > this.pos_y - this.height / 2 &&
+		heart.pos_y - heart.tolerance < this.pos_y + this.height / 2) {
 		return true;
 	}
 	return false;
@@ -87,11 +87,15 @@ BoneGroup.prototype.update = function(delta) {
 	}
 
 	if (this.elapsed_time > this.delete_time) {
-		var scene = this.scene.getScene();
-		for (var a = 0; a < this.bones.length; ++a) {
-			scene.remove(this.bones[a].sprite);
-		}
+		this.clearBones();
 		this.completed = true;
 	}
 
+}
+
+BoneGroup.prototype.clearBones = function() {
+	var scene = this.scene.getScene();
+	for (var a = 0; a < this.bones.length; ++a) {
+		scene.remove(this.bones[a].sprite);
+	}
 }

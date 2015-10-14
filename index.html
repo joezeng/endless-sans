@@ -21,7 +21,16 @@
 	<noscript>Looks like your browser doesn't support JavaScript! Please unblock your script blocker on <b>joezeng.github.io</b> to play. (Or download a browser that supports JavaScript. Seriously, it's 2015, who doesn't have a computer who can run that.)</noscript>
 
 	<div id="gamebox">
-		<div>Time: <span id="time">00:00.00</span></div>
+		<div>
+			Select your difficulty level.
+			<button onclick="reset_game('easy')">I want to have a GOOD TIME</button>
+			<button onclick="reset_game('medium')">I want to have a BAD TIME</button>
+			<button onclick="reset_game('hard')">I want to have a REALLY BAD TIME</button>
+		</div>
+		<div>
+			Time: <span id="time">0.00</span>
+			HP: 0<span id="hp">1</span>/01
+		</div>
 		<div id="heartbox"></div>
 	</div>
 

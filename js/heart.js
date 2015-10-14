@@ -28,6 +28,9 @@ function Heart() {
 	this.h_move_state = "none";
 	this.v_move_state = "none";
 
+	this.tolerance = 4;
+	this.hp = 1;
+
 	this.update = function(delta) {
 
 		/* resolve moving. */
@@ -88,11 +91,19 @@ function Heart() {
 		}
 
 		if (this.sprite) {
-			this.sprite.position.set(Math.round(this.pos_x), Math.round(this.pos_y), 2);
+			this.sprite.position.set(Math.round(this.pos_x), Math.round(this.pos_y), 5);
 		}
 
 	};
 
+}
+
+Heart.prototype.updateGameover = function(elapsed_time) {
+	if (elapsed_time < 0.5){
+		this.sprite.material.opacity = 0.5 + 0.5 * Math.cos(elapsed_time / 0.125 * Math.PI);
+	} else {
+		this.sprite.material.opacity = 1;
+	}
 }
 
 Heart.prototype.move = function(dir) {
