@@ -16,6 +16,8 @@ function BattleScene() {
 
 	this.bone_group = new BoneGroup(this, default_bone_set);
 
+	this.elapsed_time = 0;
+
 };
 
 inherit(BattleScene, SceneContext);
@@ -23,4 +25,10 @@ inherit(BattleScene, SceneContext);
 BattleScene.prototype.update = function(delta) {
 	this.heart.update(delta);
 	this.bone_group.update(delta);
+	this.elapsed_time += delta;
+	document.getElementById("time").innerHTML = this.elapsed_time.toFixed(2);
 };
+
+BattleScene.prototype.sendNewBones = function(bone_set) {
+	this.bone_group = new BoneGroup(this, bone_set);
+}

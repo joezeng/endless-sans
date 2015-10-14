@@ -37,10 +37,14 @@ function createBonesFromBoneSet(scene, bone_set) {
 	return bones;
 }
 
-function BoneGroup(scene, bone_set) {
+function BoneGroup(scene, bone_set, elapsed_time) {
 
 	this.scene = scene;
 	this.bones = createBonesFromBoneSet(this.scene, bone_set);
+	this.elapsed_time = 0;
+	if (elapsed_time > 0){
+		this.update(elapsed_time);
+	}
 
 }
 
@@ -48,6 +52,15 @@ BoneGroup.prototype.update = function(delta) {
 
 	for (var a = 0; a < this.bones.length; ++a) {
 		this.bones[a].update(delta);
+	}
+	this.elapsed_time += delta;
+	if (this.elapsed_time > 5) {
+		var scene = this.scene.getScene();
+		for (var a = 0; a < this.bones.length; ++a) {
+			scene.remove(this.bones[a].sprite);
+			delete(this.bones[a]);
+		}
+		this.scene.sendNewBones(default_bone_set);
 	}
 
 }

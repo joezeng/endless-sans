@@ -88,11 +88,17 @@ var Maruju = function (element, width, height) {
 	this.rootScene = new BattleScene();
 	this.renderContext.addRendererToElement(element);
 	this.clock = new THREE.Clock();
+	this.delay_counter = 0;
+	this.delay = 1;
 };
 
 Maruju.prototype = {
 	startDraw: function () {
 		requestAnimationFrame(Maruju.prototype.startDraw.bind(this));
+
+		this.delay_counter += 1;
+		if (this.delay_counter < this.delay) return;
+		else this.delay_counter -= this.delay;
 
 		var delta = this.clock.getDelta();
 		this.rootScene._update(delta);
