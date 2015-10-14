@@ -23,6 +23,16 @@ Bone.prototype.update = function(delta) {
 	this.sprite.position.set(this.pos_x, this.pos_y, 3);
 }
 
+Bone.prototype.collidesWithHeart = function() {
+	if (heart.pos_x > this.pos_x - this.width / 2 &&
+	    heart.pos_x < this.pos_x + this.width / 2 &&
+		heart.pos_y > this.pos_y - this.height / 2 &&
+		heart.pos_y < this.pos_y + this.height / 2) {
+		return true;
+	}
+	return false;
+}
+
 function createBonesFromBoneSet(scene, bone_set) {
 	var bones = [];
 	for (var a = 0; a < bone_set.length; ++a) {
@@ -47,11 +57,21 @@ function BoneGroup(scene, bone_set, elapsed_time) {
 	this.next_sent = false;
 
 	this.delete_time = bone_set.total_time;
+	this.next_bone_sets = bone_set.next_bone_sets;
 
 	if (elapsed_time > 0){
 		this.update(elapsed_time);
 	}
 
+}
+
+BoneGroup.prototype.collidesWithHeart = function() {
+	for (var a = 0; a < this.bones.length; ++a) {
+		if (this.bones[a].collidesWithHeart()) {
+			return true;
+		}
+	}
+	return false;
 }
 
 BoneGroup.prototype.update = function(delta) {
@@ -63,44 +83,15 @@ BoneGroup.prototype.update = function(delta) {
 
 	if (this.elapsed_time > this.next_time && this.next_sent == false) {
 		this.next_sent = true;
-		this.scene.sendNewBones(bone_sets[Math.floor(bone_sets.length * Math.random())], this.elapsed_time - this.next_time);
+		this.scene.sendNewBones(bone_sets[this.next_bone_sets[Math.floor(this.next_bone_sets.length * Math.random())]], this.elapsed_time - this.next_time);
 	}
 
 	if (this.elapsed_time > this.delete_time) {
 		var scene = this.scene.getScene();
 		for (var a = 0; a < this.bones.length; ++a) {
 			scene.remove(this.bones[a].sprite);
-			delete(this.bones[a]);
 		}
 		this.completed = true;
 	}
 
 }
-
-
-var default_bone_set = {
-	next_time: 4,
-	total_time: 5.25,
-	bones: [
-		[320, 168, 16, 128, -160],
-		[320, 24, 16, 128, -160],
-		[440, 168, 16, 128, -160],
-		[440, 24, 16, 128, -160],
-		[560, 168, 16, 128, -160],
-		[560, 24, 16, 128, -160],
-		[680, 168, 16, 128, -160],
-		[680, 24, 16, 128, -160],
-		[800, 168, 16, 128, -160],
-		[800, 24, 16, 128, -160],
-		[0, 168, 16, 128, 160],
-		[0, 24, 16, 128, 160],
-		[-120, 168, 16, 128, 160],
-		[-120, 24, 16, 128, 160],
-		[-240, 168, 16, 128, 160],
-		[-240, 24, 16, 128, 160],
-		[-360, 168, 16, 128, 160],
-		[-360, 24, 16, 128, 160],
-		[-480, 168, 16, 128, 160],
-		[-480, 24, 16, 128, 160],
-	]
-};

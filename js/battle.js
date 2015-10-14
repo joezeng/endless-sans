@@ -24,6 +24,11 @@ function BattleScene() {
 inherit(BattleScene, SceneContext);
 
 BattleScene.prototype.update = function(delta) {
+
+	// delta *= 0.5;
+
+	var collided = false;
+
 	this.heart.update(delta);
 	for (var a = 0; a < this.bone_groups.length; ++a) {
 		if (this.bone_groups[a].completed == true) {
@@ -32,8 +37,18 @@ BattleScene.prototype.update = function(delta) {
 			continue;
 		}
 		this.bone_groups[a].update(delta);
+		if (this.bone_groups[a].collidesWithHeart()) {
+			collided = true;
+		}
 	}
-	this.elapsed_time += delta;
+
+	if (collided == true) {
+		this.elapsed_time = 0;
+		console.log("Game over!");
+	} else {
+		this.elapsed_time += delta;
+	}
+
 	document.getElementById("time").innerHTML = this.elapsed_time.toFixed(2);
 };
 
