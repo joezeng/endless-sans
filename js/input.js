@@ -34,16 +34,11 @@ var InputManager = {
         if ( keyboard.eventMatches(event, 'up') ||
 			 keyboard.eventMatches(event, 'w')) {
             event.preventDefault();
-
+			heart.move("up");
         }
         if ( keyboard.eventMatches(event, 'down') ||
 			 keyboard.eventMatches(event, 's')) {
             event.preventDefault();
-
-			if (!textbox.isActive)
-				pc.onKeyDown('down');
-			else
-				textbox.choiceNext();
         }
     	if ( keyboard.eventMatches(event, 'z') ||
 			 keyboard.eventMatches(event, 'space') ||
@@ -76,12 +71,11 @@ var InputManager = {
         if ( keyboard.eventMatches(event, 'up') ||
 			 keyboard.eventMatches(event, 'w')) {
             event.preventDefault();
-			pc.onKeyUp('up');
+			heart.move("clear_v");
         }
         if ( keyboard.eventMatches(event, 'down') ||
 			 keyboard.eventMatches(event, 's')) {
             event.preventDefault();
-			pc.onKeyUp('down');
         }
 	},
 

@@ -46,6 +46,7 @@ function Heart() {
 			if (this.pos_y > this.board_y - this.size_y / 2) {
 				this.pos_y = this.board_y - this.size_y / 2;
 				this.v_move_state = "none";
+				this.jump_height = this.max_jump_height;
 			}
 
 		} else if (this.v_move_state == "jumping") {
@@ -71,7 +72,7 @@ function Heart() {
 		}
 
 		if (this.sprite) {
-			this.sprite.position.set({x: this.pos_x, y: this.pos_y, z: 2});
+			this.sprite.position.set(Math.round(this.pos_x), Math.round(this.pos_y), 2);
 		}
 
 	};
@@ -93,6 +94,13 @@ Heart.prototype.move = function(dir) {
 			} else if (keyboard.pressed("right")) {
 				this.h_move_state = "right";
 			}
+			break;
+		case "up":
+			this.v_move_state = "jumping";
+			break;
+		case "clear_v":
+			this.v_move_state = "falling";
+			this.vel_y = Math.min(this.vel_y, 0);
 			break;
 	}
 }
