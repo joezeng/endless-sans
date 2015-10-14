@@ -99,6 +99,11 @@ BattleScene.prototype.resetGame = function(diff_level) {
 	this.heart.hp = 1;
 	this.heart.pos_x = 160;
 	this.heart.pos_y = 112;
+	this.elapsed_time = 0;
+	document.getElementById("hp").innerHTML = "1";
+	this.play_state = "playing";
+	this.bone_groups = [];
+	this.sendNewBones(default_bone_set);
 	switch (diff_level) {
 		case "easy":
 			heart.tolerance = 0;
@@ -113,7 +118,4 @@ BattleScene.prototype.resetGame = function(diff_level) {
 			this.play_speed = 1.5;
 			break;
 	}
-	this.play_state = "playing";
-	this.bone_groups = [];
-	this.sendNewBones(default_bone_set);
 }
