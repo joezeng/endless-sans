@@ -3,7 +3,7 @@ function BattleScene() {
 	SceneContext.call(this);
 
 	// a single heart for the battle scene.
-	this.heart_sprite = this.addSprite("img/heart.png");
+	this.heart_sprite = this.addSprite("img/blueheart.png");
 	this.heart_sprite.scale.set(16, 16, 1);
 	this.heart_sprite.position.set(160, 228, 2);
 

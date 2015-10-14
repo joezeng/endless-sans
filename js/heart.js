@@ -19,11 +19,11 @@ function Heart() {
 	this.size_x = 16;
 	this.size_y = 16;
 
-	this.movement_velocity = 120; /* 120 pixels per second */
-	this.gravity = 120; /* 120 pixels per second squared; subject to change */
+	this.movement_velocity = 180; /* 120 pixels per second */
+	this.gravity = 360; /* 120 pixels per second squared; subject to change */
 
 	this.jump_height = 120;
-	this.max_jump_height = 120;
+	this.max_jump_height = 80;
 
 	this.h_move_state = "none";
 	this.v_move_state = "none";
@@ -39,19 +39,32 @@ function Heart() {
 
 		if (this.v_move_state == "falling") {
 
-			var new_vel_y = Math.min(this.vel_y - this.gravity * delta, this.movement_velocity);
-			var dy = (this.vel_y + new_vel_y / 2) * delta; // trapezoid integration
+			var new_vel_y = Math.max(this.vel_y - this.gravity * delta, -this.movement_velocity);
+			var dy = ((this.vel_y + new_vel_y) / 2) * delta; // trapezoid integration
+
+			this.vel_y = new_vel_y;
 
 			this.pos_y -= dy;
 			if (this.pos_y > this.board_y - this.size_y / 2) {
 				this.pos_y = this.board_y - this.size_y / 2;
 				this.v_move_state = "none";
+				if (keyboard.pressed("up")) {
+					this.v_move_state = "jumping";
+				}
 				this.jump_height = this.max_jump_height;
+			}
+
+			if (this.pos_y < this.size_y / 2) {
+				// this can still happen.
+				this.pos_y = this.size_y / 2;
+				this.vel_y = 0;
 			}
 
 		} else if (this.v_move_state == "jumping") {
 
-			var dy = this.movement_velocity * delta;
+			this.vel_y = this.movement_velocity;
+			var dy = this.vel_y * delta;
+
 			if (this.jump_height < dy) {
 				this.pos_y -= this.jump_height;
 				dy -= this.jump_height;
@@ -59,12 +72,15 @@ function Heart() {
 				this.v_move_state = "falling";
 				// correct the dy trapezoid
 				dy -= (this.gravity) * Math.pow(dy / this.gravity, 2) / 2;
+				this.vel_y = this.movement_velocity;
 				this.pos_y -= dy;
 			} else {
+				this.pos_y -= dy;
 				this.jump_height -= dy;
 			}
 
 			if (this.pos_y < this.size_y / 2) {
+				this.pos_y = this.size_y / 2;
 				this.v_move_state = "falling";
 				this.vel_y = 0;
 			}
@@ -96,11 +112,13 @@ Heart.prototype.move = function(dir) {
 			}
 			break;
 		case "up":
-			this.v_move_state = "jumping";
+			if (this.v_move_state != "falling"){
+				this.v_move_state = "jumping";
+			}
 			break;
 		case "clear_v":
-			this.v_move_state = "falling";
 			this.vel_y = Math.min(this.vel_y, 0);
+			this.v_move_state = "falling";
 			break;
 	}
 }

@@ -63,7 +63,7 @@ SceneContext.prototype = {
 	},
 	root: new Node(null, this),
 	child: null,
-	camera: new THREE.OrthographicCamera(0, 320, 0, 240, 1, 32),
+	camera: new THREE.OrthographicCamera(0, 320, 0, 120, 1, 32),
 	renderScene: new THREE.Scene()
 };
 

@@ -18,12 +18,14 @@
 <body>
 	<noscript>Looks like your browser doesn't support JavaScript! Please unblock your script blocker on <b>joezeng.github.io</b> to play. (Or download a browser that supports JavaScript. Seriously, it's 2015, who doesn't have a computer who can run that.)</noscript>
 
+	<div id="heartbox"></div>
+
 	<script type="text/javascript">
 		var maruju = null;
 		var textbox = null;
 
 		function start() {
-			maruju = new Maruju(document.body, 320, 240);
+			maruju = new Maruju(document.getElementById("heartbox"), 320, 120);
 			maruju.startDraw();
 		}
 

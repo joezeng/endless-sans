@@ -3,3 +3,14 @@ html, body {
 	color: white;
 	font: Comic Sans, Arial, sans-serif;
 }
+
+#heartbox{
+	width: 320px;
+	margin: auto;
+	padding: 4px;
+	background-color: white;
+}
+
+canvas{
+	background-color: black;
+}
