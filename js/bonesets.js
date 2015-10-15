@@ -79,7 +79,7 @@ var bone_set_1_2 = {
 };
 
 var bone_set_2 = {
-	next_time: 5,
+	next_time: 6,
 	total_time: 8,
 	bones: [
 		[340, 168, 16, 128, -100],
@@ -102,7 +102,7 @@ var bone_set_2 = {
 };
 
 var bone_set_2_2 = {
-	next_time: 5,
+	next_time: 6,
 	total_time: 8,
 	bones: [
 		[340, 40, 16, 128, -100],
