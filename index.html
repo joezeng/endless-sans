@@ -1,7 +1,7 @@
 <html>
 
 <head>
-	<title>Endless Sans</title>
+	<title>Bad Time Simulator v.0.52</title>
 
 	<link rel="stylesheet" href="css/undertale.css" />
 
@@ -13,6 +13,7 @@
 	<script type="text/javascript" src="js/bone.js"></script>
 	<script type="text/javascript" src="js/bonesets.js"></script>
 	<script type="text/javascript" src="js/heart.js"></script>
+	<script type="text/javascript" src="js/sans.js"></script>
 	<script type="text/javascript" src="js/battle.js"></script>
 	<script type="text/javascript" src="js/input.js"></script>
 </head>
@@ -22,28 +23,35 @@
 
 	<div id="gamebox">
 		<img class="sans" src="img/sans.gif" />
+		<div id="speech_bubble" class="closed">
 
-		<div>
+		</div>
+
+		<div id="select_difficulty" class="closed">
 			Select your difficulty level.
 			<button onclick="reset_game('easy')">I want to have a GOOD TIME</button>
 			<button onclick="reset_game('medium')">I want to have a BAD TIME</button>
 			<button onclick="reset_game('hard')">I want to have a REALLY BAD TIME</button>
 		</div>
-		<div id="heartbox"></div>
-		<div>
-			<div class="stats" style="width: 80px;">PLAYER</div>
-			<div class="stats" style="width: 60px;">LV <span id="love">1</span></div>
-			<div class="stats">
-				<span class="tag">HP:</span>
-				<div id="hp_bar">
-					<div id="hp_yellow_bar">
+
+		<div id="gameplay_area" class="closed">
+			<div id="heartbox"></div>
+			<div>
+				<div class="stats" style="width: 80px;">PLAYER</div>
+				<div class="stats" style="width: 60px;">LV <span id="love">1</span></div>
+				<div class="stats">
+					<span class="tag">HP:</span>
+					<div id="hp_bar">
+						<div id="hp_yellow_bar">
+						</div>
 					</div>
+					0<span id="hp">1</span>/01
 				</div>
-				0<span id="hp">1</span>/01
+				<br />
+				<div class="stats"><span class="tag">Time:</span> <span id="time">0.00</span></div>
 			</div>
-			<br />
-			<div class="stats"><span class="tag">Time:</span> <span id="time">0.00</span></div>
 		</div>
+
 	</div>
 
 	<script type="text/javascript">

@@ -35,10 +35,11 @@ var InputManager = {
 			 keyboard.eventMatches(event, 'space') ||
 	 		 keyboard.eventMatches(event, 'enter')) {
       		event.preventDefault();
-			// advance text in _some_ circumstances?
+			sans.advanceTextA();
     	}
 		if ( keyboard.eventMatches(event, 'x')) {
 			event.preventDefault();
+			sans.advanceTextB();
 		}
     },
 
@@ -78,6 +79,10 @@ var InputManager = {
 
 InputManager.injectInto(document);
 
+
 function reset_game(difficulty) {
 	maruju.rootScene.resetGame(difficulty);
+	sans.queueText([
+		"Alright, here we go."
+	]);
 }

@@ -17,17 +17,20 @@ function BattleScene() {
 	this.difficulty = "easy";
 	this.bone_groups = [];
 
-	this.play_state = "none";
+	this.play_state = "intro";
 	this.play_speed = 1;
 
 	this.elapsed_time = 0;
 	this.final_time = 0;
+	this.final_message = false;
 
 };
 
 inherit(BattleScene, SceneContext);
 
 BattleScene.prototype.update = function(delta) {
+
+	sans.update(delta);
 
 	if (this.play_state == "playing") {
 
@@ -68,13 +71,16 @@ BattleScene.prototype.update = function(delta) {
 			document.getElementById("time").innerHTML = this.elapsed_time.toFixed(2);
 		}
 
-
 	} else if (this.play_state == "gameover") {
 
 		this.elapsed_time += delta;
 
 		this.heart.updateGameover(this.elapsed_time);
 
+		if (this.final_message == false){
+			this.final_message = true;
+			sans.sendGameOverMessage();
+		}
 		if (this.elapsed_time >= 1.0) {
 			this.elapsed_time = 0;
 			this.play_state = "not-playing";
@@ -102,9 +108,12 @@ BattleScene.prototype.resetGame = function(diff_level) {
 	document.getElementById("hp_yellow_bar").style.width = "20px";
 	this.heart.pos_x = 160;
 	this.heart.pos_y = 112;
+	this.heart.update(0);
 	this.elapsed_time = 0;
-	this.play_state = "playing";
+	document.getElementById("time").innerHTML = "0.00";
+	this.play_state = "preplaying";
 	this.bone_groups = [];
+	this.final_message = false;
 	this.sendNewBones(default_bone_set);
 	switch (diff_level) {
 		case "easy":
@@ -123,5 +132,7 @@ BattleScene.prototype.resetGame = function(diff_level) {
 			document.getElementById("love").innerHTML = "99";
 			break;
 	}
+	document.getElementById("select_difficulty").className = "closed";
+	document.getElementById("gameplay_area").className = "";
 	document.activeElement.blur();
 }

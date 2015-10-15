@@ -1,14 +1,16 @@
 html, body {
 	background-color: black;
 	color: white;
-	font-family: Comic Sans MS, Arial, sans-serif;
-	font-size: 16px;
+	font-family: "8-bit Operator+", Fixedsys, sans-serif;
+	font-weight: bold;
+	letter-spacing: 1px;
+	font-size: 18px;
 }
 
 #gamebox{
 	width: 400px;
 	height: 480px;
-	margin: auto;
+	margin: 40px auto;
 	text-align: center;
 }
 
@@ -25,7 +27,31 @@ canvas{
 
 img.sans{
 	position: relative;
+	vertical-align: middle;
 }
+
+div#select_difficulty{
+	transition: all 0.5s ease;
+	overflow: hidden;
+	height: 80px;
+	margin: 20px 0px;
+}
+
+div#select_difficulty.closed{
+	height: 0;
+	margin: 0;
+}
+
+div#gameplay_area{
+	transition: all 0.5s ease;
+	overflow: hidden;
+	height: 180px;
+}
+
+div#gameplay_area.closed{
+	height: 0;
+}
+
 
 div.stats{
 	display: inline-block;
@@ -35,6 +61,7 @@ div.stats{
 	overflow: visible;
 	font-size: 15px;
 	font-family: "Mars Needs Cunnilingus", monospace;
+	font-weight: normal;
 	letter-spacing: 1px;
 }
 
@@ -57,4 +84,26 @@ div#hp_yellow_bar{
 	width: 20px;
 	height: 15px;
 	background-color: yellow;
+}
+
+div#speech_bubble{
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	text-align: left;
+	width: 160px;
+	height: 100px;
+	border-radius: 8px;
+	padding: 8px;
+	background-color: white;
+	color: black;
+	font-family: Comic Sans MS, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	transition: all 0.5s ease;
+}
+
+div#speech_bubble.closed{
+	width: 0;
+	padding: 8px 0;
 }
