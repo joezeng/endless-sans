@@ -107,3 +107,36 @@ div#speech_bubble.closed{
 	width: 0;
 	padding: 8px 0;
 }
+
+div.bottom-credits{
+	position: absolute;
+	text-align: center;
+	font-size: 9px;
+	line-height: 15px;
+	height: 32px;
+	bottom: 0;
+	left: calc(50% - 160px);
+	width: 320px;
+	padding: 8px 0;
+	overflow: hidden;
+	transition: all 0.3s ease;
+}
+
+
+div.bottom-credits span{
+	display: inline-block;
+}
+
+
+div.bottom-credits:hover{
+	height: 200px;
+}
+
+a{
+	color: #00ffff;
+	text-decoration: none;
+}
+
+a:hover{
+	color: #33cccc;
+}
