@@ -54,6 +54,7 @@ BattleScene.prototype.update = function(delta) {
 				heart.hp = 0;
 				document.getElementById("hp").innerHTML = "0";
 			}
+			document.getElementById("hp_yellow_bar").style.width = (heart.hp * 20) + "px";
 		}
 
 		if (heart.hp <= 0) {
@@ -97,10 +98,11 @@ BattleScene.prototype.resetGame = function(diff_level) {
 	this.clearAllBones();
 	this.difficulty = diff_level;
 	this.heart.hp = 1;
+	document.getElementById("hp").innerHTML = "1";
+	document.getElementById("hp_yellow_bar").style.width = "20px";
 	this.heart.pos_x = 160;
 	this.heart.pos_y = 112;
 	this.elapsed_time = 0;
-	document.getElementById("hp").innerHTML = "1";
 	this.play_state = "playing";
 	this.bone_groups = [];
 	this.sendNewBones(default_bone_set);
@@ -108,14 +110,17 @@ BattleScene.prototype.resetGame = function(diff_level) {
 		case "easy":
 			heart.tolerance = 0;
 			this.play_speed = 1;
+			document.getElementById("love").innerHTML = "1";
 			break;
 		case "medium":
 			heart.tolerance = 2;
 			this.play_speed = 1;
+			document.getElementById("love").innerHTML = "10";
 			break;
 		case "hard":
 			heart.tolerance = 2;
 			this.play_speed = 1.5;
+			document.getElementById("love").innerHTML = "99";
 			break;
 	}
 	document.activeElement.blur();
