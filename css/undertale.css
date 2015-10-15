@@ -31,6 +31,8 @@ div.stats{
 	display: inline-block;
 	text-align: left;
 	width: 140px;
+	white-space: nowrap;
+	overflow: visible;
 	font-size: 15px;
 	font-family: "Mars Needs Cunnilingus", monospace;
 	letter-spacing: 1px;
