@@ -141,10 +141,10 @@ div.bottom-credits{
 	text-align: center;
 	font-size: 9px;
 	line-height: 15px;
-	height: 32px;
+	height: 24px;
 	bottom: 0;
-	left: calc(50% - 160px);
-	width: 320px;
+	left: calc(50% - 210px);
+	width: 420px;
 	padding: 8px 0;
 	overflow: hidden;
 	transition: all 0.3s ease;
@@ -157,7 +157,7 @@ div.bottom-credits span{
 
 
 div.bottom-credits:hover{
-	height: 200px;
+	height: 160px;
 }
 
 a{
