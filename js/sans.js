@@ -82,7 +82,8 @@ Sans.prototype.sendGameOverMessage = function() {
 			"Alright, so you've learned the ropes of the game.",
 			"Now try playing with only one hit point.",
 		]);
-	} else if (game.difficulty == "medium" && game.final_time >= 60) {
+	} else if (game.difficulty == "medium" && game.final_time >= 60 &&
+			   game.final_time < 180) {
 		this.queueText([
 			"Pretty good. Bet you can't do better.",
 		]);
