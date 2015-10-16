@@ -4,7 +4,7 @@ function Sans() {
 	this.current_text = "";
 	this.text_chars = 0;
 
-	this.text_state = "none;"
+	this.text_state = "none";
 
 	this.cps = 25;
 
@@ -32,12 +32,13 @@ Sans.prototype.advanceTextA = function() {
 			this.current_text = "";
 			this.hideSpeechBubble();
 			if (maruju.rootScene.play_state == "intro"){
-				maruju.rootScene.play_state = "not-playing";
+				maruju.rootScene.play_state = "select-menu";
 	 			document.getElementById("select_difficulty").className = "";
 			} else if (maruju.rootScene.play_state == "preplaying"){
 				maruju.rootScene.play_state = "playing";
 			} else if (maruju.rootScene.play_state == "gameover" ||
 					   maruju.rootScene.play_state == "not-playing"){
+		   		maruju.rootScene.play_state = "select-menu";
 				document.getElementById("select_difficulty").className = "";
 				document.getElementById("gameplay_area").className = "closed";
 			}

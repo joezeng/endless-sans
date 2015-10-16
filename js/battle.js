@@ -81,9 +81,11 @@ BattleScene.prototype.update = function(delta) {
 			this.final_message = true;
 			sans.sendGameOverMessage();
 		}
+
 		if (this.elapsed_time >= 1.0) {
 			this.elapsed_time = 0;
 			this.play_state = "not-playing";
+			document.getElementById("select_text").innerHTML = "Play again?";
 		}
 
 	}

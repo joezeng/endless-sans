@@ -25,17 +25,28 @@ var InputManager = {
         if ( keyboard.eventMatches(event, 'up') ||
 			 keyboard.eventMatches(event, 'w')) {
             event.preventDefault();
-			heart.move("up");
+			if (maruju.rootScene.play_state == "select-menu"){
+				menu.moveUp();
+			} else {
+				heart.move("up");
+			}
         }
         if ( keyboard.eventMatches(event, 'down') ||
 			 keyboard.eventMatches(event, 's')) {
             event.preventDefault();
+			if (maruju.rootScene.play_state == "select-menu"){
+				menu.moveDown();
+			}
         }
     	if ( keyboard.eventMatches(event, 'z') ||
 			 keyboard.eventMatches(event, 'space') ||
 	 		 keyboard.eventMatches(event, 'enter')) {
       		event.preventDefault();
-			sans.advanceTextA();
+			if (maruju.rootScene.play_state == "select-menu"){
+				menu.select();
+			} else {
+				sans.advanceTextA();
+			}
     	}
 		if ( keyboard.eventMatches(event, 'x')) {
 			event.preventDefault();
