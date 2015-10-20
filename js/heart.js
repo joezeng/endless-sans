@@ -22,8 +22,8 @@ function Heart() {
 	this.movement_velocity = 160; /* 120 pixels per second */
 	this.gravity = 320; /* 360 pixels per second squared; subject to change */
 
-	this.jump_height = 80;
-	this.max_jump_height = 80;
+	this.jump_height = 30;
+	this.max_jump_height = 30;
 
 	this.h_move_state = "none";
 	this.v_move_state = "none";
