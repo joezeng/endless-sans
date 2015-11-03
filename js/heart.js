@@ -14,12 +14,14 @@ function Heart() {
 	this.pos_x = 160;
 	this.pos_y = 112;
 
+	this.vel_x = 0;
 	this.vel_y = 0; // vel_x is never affected.
 
 	this.size_x = 16;
 	this.size_y = 16;
 
-	this.movement_velocity = 160; /* 120 pixels per second */
+	this.x_movement_velocity = 160;
+	this.y_movement_velocity = 160;
 	this.gravity = 320; /* 360 pixels per second squared; subject to change */
 
 	this.jump_height = 30;
@@ -35,14 +37,18 @@ function Heart() {
 
 		/* resolve moving. */
 		if (this.h_move_state == "left") {
-			this.pos_x = Math.max(0 + this.size_y / 2, this.pos_x - this.movement_velocity * delta);
+			this.vel_x = -this.x_movement_velocity;
+			this.pos_x = Math.max(0 + this.size_y / 2, this.pos_x - this.x_movement_velocity * delta);
 		} else if (this.h_move_state == "right") {
-			this.pos_x = Math.min(320 - this.size_y / 2, this.pos_x + this.movement_velocity * delta);
+			this.vel_x = this.x_movement_velocity;
+			this.pos_x = Math.min(320 - this.size_y / 2, this.pos_x + this.x_movement_velocity * delta);
+		} else {
+			this.vel_x = 0;
 		}
 
 		if (this.v_move_state == "falling") {
 
-			var new_vel_y = Math.max(this.vel_y - this.gravity * delta, -this.movement_velocity);
+			var new_vel_y = Math.max(this.vel_y - this.gravity * delta, -this.y_movement_velocity);
 			var dy = ((this.vel_y + new_vel_y) / 2) * delta; // trapezoid integration
 
 			this.vel_y = new_vel_y;
@@ -50,6 +56,7 @@ function Heart() {
 			this.pos_y -= dy;
 			if (this.pos_y > this.board_y - this.size_y / 2) {
 				this.pos_y = this.board_y - this.size_y / 2;
+				this.vel_y = 0;
 				this.v_move_state = "none";
 				if (keyboard.pressed("up")) {
 					this.v_move_state = "jumping";
@@ -65,7 +72,7 @@ function Heart() {
 
 		} else if (this.v_move_state == "jumping") {
 
-			this.vel_y = this.movement_velocity;
+			this.vel_y = this.y_movement_velocity;
 			var dy = this.vel_y * delta;
 
 			if (this.jump_height < dy) {
@@ -75,7 +82,7 @@ function Heart() {
 				this.v_move_state = "falling";
 				// correct the dy trapezoid
 				dy -= (this.gravity) * Math.pow(dy / this.gravity, 2) / 2;
-				this.vel_y = this.movement_velocity;
+				this.vel_y = this.y_movement_velocity;
 				this.pos_y -= dy;
 			} else {
 				this.pos_y -= dy;

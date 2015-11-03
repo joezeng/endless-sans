@@ -12,10 +12,24 @@ function Bone(scene, sprite_url, props) {
 	this.pos_y = props.pos_y;
 	this.sprite.position.set(this.pos_x, this.pos_y, 3);
 
+	this.colour = props.colour || "white"; // can be white, blue, or orange.
+
 	this.vel_x = props.vel_x;
 
 	this.scene.getScene().add(this.sprite);
 
+}
+
+Bone.prototype.setColour = function(colour) {
+	this.colour = colour;
+	switch (this.colour) {
+		case "white":
+			this.sprite.material.color = new THREE.Color(0xffffff); break;
+		case "blue":
+			this.sprite.material.color = new THREE.Color(0x00ffff); break;
+		case "orange":
+			this.sprite.material.color = new THREE.Color(0xff7f00); break;
+	}
 }
 
 Bone.prototype.update = function(delta) {
@@ -28,21 +42,36 @@ Bone.prototype.collidesWithHeart = function() {
 	    heart.pos_x - heart.tolerance < this.pos_x + this.width / 2 &&
 		heart.pos_y + heart.tolerance > this.pos_y - this.height / 2 &&
 		heart.pos_y - heart.tolerance < this.pos_y + this.height / 2) {
-		return true;
+
+		console.log(heart.vel_x, heart.vel_y);
+
+		if (heart.vel_y == 0 && heart.vel_x == 0 && this.colour == "orange") {
+			return true;
+		} else if ((heart.vel_y != 0 || heart.vel_x != 0) && this.colour == "blue") {
+			return true;
+		} else if (this.colour == "white") {
+			return true;
+		}
+
 	}
 	return false;
 }
 
 function createBonesFromBoneSet(scene, bone_set) {
 	var bones = [];
+	console.log(bone_set);
 	for (var a = 0; a < bone_set.length; ++a) {
-		bones.push(new Bone(scene, "img/edgebone.png", {
+		var new_bone = new Bone(scene, "img/edgebone.png", {
 			pos_x: bone_set[a][0],
 			pos_y: bone_set[a][1],
 			width: bone_set[a][2],
 			height: bone_set[a][3],
 			vel_x: bone_set[a][4],
-		}));
+		});
+		if (bone_set[a].length > 5) {
+			new_bone.setColour(bone_set[a][5]);
+		}
+		bones.push(new_bone);
 	}
 	return bones;
 }

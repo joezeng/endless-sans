@@ -25,7 +25,8 @@ var default_bone_set = {
 		[-500, 24, 16, 128, 160],
 	],
 	next_bone_sets: [
-		"1L", "1R", "2L", "2R", "3"
+		// "1L", "1R", "2L", "2R", "3",
+		"6L", "6R"
 	],
 };
 
@@ -44,7 +45,7 @@ var bone_set_1R = { // wave from the right
 		[440, 128, 16, 128, -200],
 	],
 	next_bone_sets: [
-		"1L", "2L", "2R", "3", "4A", "5A"
+		"1L", "2L", "2R", "3", "4A", "5A", "6L"
 	],
 };
 
@@ -62,7 +63,7 @@ var bone_set_1L = { // wave from the left
 		[-120, 128, 16, 128, 200],
 	],
 	next_bone_sets: [
-		"1R", "2L", "2R", "3", "4A", "5A"
+		"1R", "2L", "2R", "3", "4A", "5A", "6R"
 	],
 };
 
@@ -85,7 +86,7 @@ var bone_set_2R = { // 2R
 		[-420, 40, 16, 128, 100],
 	],
 	next_bone_sets: [
-		"1R", "3"
+		"1R", "3", "6R"
 	],
 };
 
@@ -108,7 +109,7 @@ var bone_set_2L = { // 2L
 		[-420, 168, 16, 128, 100],
 	],
 	next_bone_sets: [
-		"1L", "3"
+		"1L", "3", "6L"
 	],
 };
 
@@ -131,7 +132,7 @@ var bone_set_3 = { // 3
 		[-88, 80, 16, 128, 200],
 	],
 	next_bone_sets: [
-		"1L", "1R", "2L", "2R", "4A", "5A"
+		"1L", "1R", "2L", "2R", "4A", "5A", "6L", "6R",
 	],
 };
 
@@ -196,7 +197,7 @@ var bone_set_4C = {
 		[328, 24, 16, 128, -240],
 	],
 	next_bone_sets: [
-		"1L", "1R"
+		"1R"
 	],
 };
 
@@ -259,7 +260,36 @@ var bone_set_5C = {
 		[-8, 24, 16, 128, 240],
 	],
 	next_bone_sets: [
-		"1L", "1R"
+		"1L"
+	],
+};
+
+
+
+var bone_set_6R = {
+	next_time: 0.8,
+	total_time: 3.0,
+	bones: [
+		[-88, 168, 16, 128, 240],
+		[-8, 96, 16, 128, 240, "blue"],
+	],
+	next_bone_sets: [
+		"1L", "1R", "2L", "2R",
+		"6L", "6R", "6L", "6R", "6L", "6R", "6L", "6R"
+	],
+};
+
+
+var bone_set_6L = {
+	next_time: 0.8,
+	total_time: 3.0,
+	bones: [
+		[408, 168, 16, 128, -240],
+		[328, 96, 16, 128, -240, "blue"],
+	],
+	next_bone_sets: [
+		"1L", "1R", "2L", "2R",
+		"6L", "6R", "6L", "6R", "6L", "6R", "6L", "6R"
 	],
 };
 
@@ -283,4 +313,6 @@ var bone_sets = {
 	"5B2": bone_set_5B2,
 	"5B3": bone_set_5B3,
 	"5C": bone_set_5C,
+	"6L": bone_set_6L,
+	"6R": bone_set_6R,
 }
