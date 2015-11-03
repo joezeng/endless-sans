@@ -3,6 +3,7 @@ function Sans() {
 	this.text_queue = [];
 	this.current_text = "";
 	this.text_chars = 0;
+	this.prev_text_chars = 0;
 
 	this.text_state = "none";
 
@@ -65,6 +66,12 @@ Sans.prototype.update = function(delta) {
 		this.text_chars = Math.min(this.current_text.length, this.text_chars + this.cps * delta);
 		document.getElementById("speech_bubble").innerHTML =
 			this.current_text.substr(0, Math.floor(this.text_chars));
+
+		if (Math.floor(this.text_chars / 2) > Math.floor(this.prev_text_chars / 2)) {
+			document.getElementById("se_sans").currentTime = 0;
+			document.getElementById("se_sans").play();
+		}
+		this.prev_text_chars = this.text_chars;
 	}
 };
 
