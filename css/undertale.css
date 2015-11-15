@@ -3,10 +3,9 @@
 html, body {
 	background-color: black;
 	color: white;
-	font-family: "8-bit Operator+", Fixedsys, sans-serif;
-	font-weight: bold;
-	letter-spacing: 1px;
-	font-size: 18px;
+	font-family: "8-bit Operator Mono", Fixedsys, sans-serif;
+	font-weight: normal;
+	font-size: 24px;
 }
 
 #gamebox{
@@ -44,7 +43,7 @@ div#select_difficulty.closed{
 }
 
 div#select_text{
-	font-size: 12px;
+	font-size: 16px;
 	margin-bottom: 4px;
 }
 
@@ -52,6 +51,10 @@ div.diff-option{
 	text-align: left;
 	position: relative;
 	left: 24px;
+}
+
+div.diff-option.hidden{
+	display: none;
 }
 
 div.diff-option::before{
@@ -141,7 +144,7 @@ div#speech_bubble.closed{
 div.bottom-credits{
 	position: absolute;
 	text-align: center;
-	font-size: 9px;
+	font-size: 12px;
 	line-height: 15px;
 	height: 24px;
 	bottom: 0;
