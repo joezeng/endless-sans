@@ -83,31 +83,32 @@ Sans.prototype.sendGameOverMessage = function() {
 	var game = maruju.rootScene;
 	if (game.difficulty == "easy" && game.final_time < 5) {
 		this.queueText([
-			"Hey, were you <i>trying</i> to lose there? That took some effort!",
+			"hey, were you <i>trying</i> to lose there? that took some effort",
 		]);
 	} else if (game.difficulty == "easy" && game.final_time >= 60) {
 		this.queueText([
-			"Alright, so you've learned the ropes of the game.",
-			"Now try playing with only one hit point.",
+			"alright, so you've learned the ropes of the game",
+			"now try playing with only one hit point",
 		]);
 	} else if (game.difficulty == "medium" && game.final_time >= 60 &&
 			   game.final_time < 180) {
 		this.queueText([
-			"Pretty good. Bet you can't do better.",
+			"pretty good. bet you can't do better",
 		]);
 	} else if (game.difficulty == "medium" && game.final_time >= 180) {
 		this.queueText([
-			"I... obviously underestimated you. You should try having a REALLY hard time.",
+			"i... obviously underestimated you. you should try having a REALLY hard time",
 		]);
 	} else if (game.difficulty == "hard" && game.final_time >= 60) {
 		this.queueText([
-			"You... are a LUNATIC.",
-			"I am praying for the residents of Mt. Ebott right now, if this is what they're up against.",
+			"you... are a LUNATIC",
+			"i am praying for the residents of mt. ebott right now, if this is what they're up against",
 		]);
 	} else {
 		this.queueText([
-			"Ooh, too bad! Better luck next time.",
-			"Or, on second thought, don't play again. I don't want to lose to you when it counts.",
+			"ooh, too bad. better luck next time.",
+			"or, on second thought, don't play again.",
+			"i don't want to lose to you when it counts.",
 		]);
 	}
 };
