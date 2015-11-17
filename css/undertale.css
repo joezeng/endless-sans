@@ -1,21 +1,47 @@
 @import url("webfont.css");
 
 html, body {
-	background-color: black;
-	color: white;
+	
+/*	background-image: url("../img/background.jpg");
+	background-repeat: no-repeat;
+	background-position: center top;
+*/	color: white;
 	font-family: "8-bit Operator Mono", Fixedsys, sans-serif;
 	font-weight: normal;
-	font-size: 24px;
+	font-size: 32px;
+
 }
 
+.fullscreen-bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -100;
+	background-color: black;
+}
+
+#bgvid{
+
+    top: 0;
+    left: 0;
+    height: 100% top;
+	width: 100%;
+}
+
+
 #gamebox{
-	width: 420px;
-	margin: 40px auto;
+	
+	margin: auto;
+	padding-top: 150px;
 	text-align: center;
 }
 
 #heartbox{
-	width: 320px;
+	width: 640px;
+	height: 240x;
 	margin: auto;
 	padding: 4px;
 	background-color: white;
@@ -23,7 +49,7 @@ html, body {
 
 canvas{
 	background-color: black;
-}
+	}
 
 img.sans{
 	position: relative;
@@ -33,24 +59,26 @@ img.sans{
 div#select_difficulty{
 	transition: all 0.5s ease;
 	overflow: hidden;
-	height: 100px;
-	margin: 20px 0px;
+	height: 200px;
+	width: 600px;
+	margin: auto;
+
 }
 
 div#select_difficulty.closed{
 	height: 0;
-	margin: 0;
+
 }
 
 div#select_text{
-	font-size: 16px;
+	font-size: 32px;
 	margin-bottom: 4px;
 }
 
 div.diff-option{
 	text-align: left;
 	position: relative;
-	left: 24px;
+	left: 40px;
 }
 
 div.diff-option.hidden{
@@ -60,16 +88,16 @@ div.diff-option.hidden{
 div.diff-option::before{
 	content: "*";
 	position: absolute;
-	left: -24px;
+	left: -32px;
 }
 
 div.sel.diff-option::before{
 	content: url('../img/heart.png');
 	position: absolute;
-	width: 16px;
-	height: 16px;
-	left: -24px;
-	top: calc(50% - 7px);
+	width: 32px;
+	height: 32px;
+	left: -40px;
+	top: calc(50% - 15px);
 }
 
 
@@ -78,7 +106,7 @@ div.sel.diff-option::before{
 div#gameplay_area{
 	transition: all 0.5s ease;
 	overflow: hidden;
-	height: 180px;
+	height: 400px;
 }
 
 div#gameplay_area.closed{
@@ -88,11 +116,11 @@ div#gameplay_area.closed{
 
 div.stats{
 	display: inline-block;
-	text-align: left;
-	width: 140px;
+	text-align: center;
+	width: 280px;
 	white-space: nowrap;
 	overflow: visible;
-	font-size: 15px;
+	font-size: 32px;
 	font-family: "Mars Needs Cunnilingus", monospace;
 	font-weight: normal;
 	letter-spacing: 1px;
@@ -100,7 +128,7 @@ div.stats{
 
 span.tag{
 	font-family: Menlo, Consolas, sans-serif;
-	font-size: 10px;
+	font-size: 20px;
 }
 
 div#hp_bar{
@@ -108,14 +136,14 @@ div#hp_bar{
 	position: relative;
 	top: 3px;
 	width: 20px;
-	height: 15px;
+	height: 25px;
 	background-color: red;
 }
 
 div#hp_yellow_bar{
 	position: absolute;
-	width: 20px;
-	height: 15px;
+	width: 40px;
+	height: 25px;
 	background-color: yellow;
 }
 
@@ -124,14 +152,14 @@ div#speech_bubble{
 	display: inline-block;
 	vertical-align: middle;
 	text-align: left;
-	width: 160px;
-	height: 100px;
-	border-radius: 8px;
-	padding: 8px;
+	width: 300px;
+	height: 200px;
+	border-radius: 16px;
+	padding: 32px;
 	background-color: white;
 	color: black;
 	font-family: Comic Sans MS, "Comic Relief", sans-serif;
-	font-size: 12px;
+	font-size: 32px;
 	font-weight: normal;
 	transition: all 0.5s ease;
 }
