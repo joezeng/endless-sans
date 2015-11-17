@@ -83,12 +83,12 @@ Sans.prototype.sendGameOverMessage = function() {
 	var game = maruju.rootScene;
 	if (game.difficulty == "easy" && game.final_time < 5) {
 		this.queueText([
-			"Hey, were you <i>trying</i> to lose there? That took some effort!",
+			"Hey, were you <i>trying</i> to die there? That took some effort!",
 		]);
 	} else if (game.difficulty == "easy" && game.final_time >= 60) {
 		this.queueText([
-			"Alright, so you've learned the ropes of the game.",
-			"Now try playing with only one hit point.",
+			"Alright, I went really easy on you.",
+			"Believe me, you don't want to have a <font color=#ff0000>BAD TIME</font>.",
 		]);
 	} else if (game.difficulty == "medium" && game.final_time >= 60 &&
 			   game.final_time < 180) {
@@ -97,17 +97,19 @@ Sans.prototype.sendGameOverMessage = function() {
 		]);
 	} else if (game.difficulty == "medium" && game.final_time >= 180) {
 		this.queueText([
-			"I... obviously underestimated you. You should try having a REALLY hard time.",
+			"I know your type. you're, uh, very <font color=#ff0000>determined</font>, aren't you? ",
+			"you'll never give up, even if there's, uh...",
+			"a <font color=#ff0000>REALLY BAD TIME</font>, huh?",
 		]);
 	} else if (game.difficulty == "hard" && game.final_time >= 60) {
 		this.queueText([
-			"You... are a LUNATIC.",
+			"You... are a <font color=#ff0000>LUNATIC</font>.",
 			"I am praying for the residents of Mt. Ebott right now, if this is what they're up against.",
 		]);
 	} else {
 		this.queueText([
-			"Ooh, too bad! Better luck next time.",
-			"Or, on second thought, don't play again. I don't want to lose to you when it counts.",
+			"You gotta learn when to <font color=#ff0000>QUIT</font>.",
+			"And that day's <font color=#ff0000>TODAY</font>!",
 		]);
 	}
 };
