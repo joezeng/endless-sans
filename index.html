@@ -17,22 +17,34 @@
 	<script type="text/javascript" src="js/battle.js"></script>
 	<script type="text/javascript" src="js/input.js"></script>
 	<script type="text/javascript" src="js/menu.js"></script>
+
 </head>
+
+
+<style>
+</style>
+
 
 <body>
 	<noscript>Looks like your browser doesn't support JavaScript! Please unblock your script blocker on <b>joezeng.github.io</b> to play. (Or download a browser that supports JavaScript. Seriously, it's 2015, who doesn't have a computer who can run that.)</noscript>
-
+	<div class="fullscreen-bg">
+			<video autoplay loop poster="img/background.jpg" id="bgvid">
+				<source src="img/background.mp4" type="video/mp4">
+			</video>	
+	</div>	
 	<div id="gamebox">
-		<img class="sans" src="img/sans.gif" />
-		<div id="speech_bubble" class="closed">
+		
+			
 
+		<img class="sans" src="img/sans.gif" margin:/>
+		<div id="speech_bubble" class="closed">
 		</div>
 
 		<div id="select_difficulty" class="closed">
-			<div id="select_text">Select your difficulty level.</div>
-			<div class="diff-option" id="option0">I want to have a GOOD TIME</div>
-			<div class="diff-option" id="option1">I want to have a BAD TIME</div>
-			<div class="diff-option" id="option2">I want to have a REALLY BAD TIME</div>
+			<div id="select_text">I am about to have a...</div>
+			<div class="diff-option" id="option0">GOOD TIME</div>
+			<div class="diff-option" id="option1">BAD TIME</div>
+			<div class="diff-option" id="option2">REALLY BAD TIME</div>
 			<div class="diff-option hidden" id="option3">I want to have a PAPYRUS TIME</div>
 		</div>
 
@@ -70,7 +82,7 @@
 
 		function start() {
 			menu.updateHeartPosition();
-			maruju = new Maruju(document.getElementById("heartbox"), 320, 120);
+			maruju = new Maruju(document.getElementById("heartbox"), 640, 240);
 			maruju.startDraw();
 		}
 
@@ -80,6 +92,7 @@
 	<div class="bottom-credits">
 		<p>
 			<span>Endless Sans v.0.68, by Joe Zeng.</span>
+			<span>Graphics by Sebastian von Harsdorf.</span>
 			<span>Undertale &copy; 2015 Toby Fox.</span>
 		</p>
 
