@@ -134,6 +134,7 @@ div#speech_bubble{
 	font-size: 12px;
 	font-weight: normal;
 	transition: all 0.5s ease;
+	text-transform: lowercase;
 }
 
 div#speech_bubble.closed{
