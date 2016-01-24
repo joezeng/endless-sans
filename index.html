@@ -17,10 +17,20 @@
 	<script type="text/javascript" src="js/battle.js"></script>
 	<script type="text/javascript" src="js/input.js"></script>
 	<script type="text/javascript" src="js/menu.js"></script>
+	
+<script>
+var trackOutboundLink = function(url) {
+   ga('send', 'event', 'outbound', 'click', url, {
+     'transport': 'beacon',
+     'hitCallback': function(){document.location = url;}
+   });
+}
+</script>
+	
 </head>
 
 <body>
-	<noscript>Looks like your browser doesn't support JavaScript! Please unblock your script blocker on <b>joezeng.github.io</b> to play. (Or download a browser that supports JavaScript. Seriously, it's 2015, who doesn't have a computer who can run that.)</noscript>
+	<noscript>Looks like your browser doesn't support JavaScript! Please unblock your script blocker on <b>joezeng.github.io</b> to play. (Or download a browser that supports JavaScript. Seriously, it's 2016, who doesn't have a computer who can run that.)</noscript>
 
 	<div id="gamebox">
 		<img class="sans" src="img/sans.gif" />
@@ -79,9 +89,10 @@
 
 	<div class="bottom-credits">
 		<p>
+		<span style="font-size: 125%;">Want to see me make more games? Check out my <a href="http://patreon.com/joezeng" onclick="trackOutboundLink('http://patreon.com/joezeng');">Patreon</a>!</span><br>
 			<span>Endless Sans v.0.68, by Joe Zeng.</span>
 			<span>Undertale &copy; 2015 Toby Fox.</span>
-		<br>Want more games like this? Check out my <a href="http://patreon.com/joezeng">Patreon</a>!</p>
+		</p>
 
 		<p>Special thanks to <a href="http://reddit.com/r/undertale">/r/undertale</a> for helping me playtest! Also special thanks to Terry Cavanagh for making this kind of game in the first place.</p>
 	</div>
