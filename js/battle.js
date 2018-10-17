@@ -54,7 +54,7 @@ BattleScene.prototype.update = function(delta) {
 			document.getElementById("se_damage").play();
 			if (this.difficulty == "easy") {
 				heart.hp = Math.max(0, heart.hp - delta);
-				document.getElementById("hp").innerHTML = heart.hp.toFixed(2);
+				document.getElementById("hp").innerHTML = (heart.hp + 0.00499999999).toFixed(2);
 			} else {
 				heart.hp = 0;
 				document.getElementById("hp").innerHTML = "0";
