@@ -30,11 +30,17 @@ Menu.prototype.select = function() {
 }
 
 Menu.prototype.updateHeartPosition = function(pos) {
+	var sans
 	for (var a = 0; a < this.options.length; ++a) {
 		if (a == this.current_option) {
 			document.getElementById("option" + a).className = "sel diff-option";
 		} else {
 			document.getElementById("option" + a).className = "diff-option";
+		}
+		if (a == document.getElementById("option2")) {
+			document.getElementById("sans").src = "./img/sanseye.gif";
+		} else {
+			document.getElementById("sans").src = "./img/sans.gif";
 		}
 	}
 }
